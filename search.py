@@ -87,85 +87,17 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    # create new Stack
-    frontier = util.Stack()
-
-    # push the start state and list of actions to get from start state to
-    # pushed state; this is initially empty
-    frontier.push((problem.getStartState(), []))
-    expanded = []
-    while not frontier.isEmpty():
-        state, actions = frontier.pop()
-        if problem.isGoalState(state):
-            return actions
-
-        # otherwise we expand node
-        expanded.append(state)
-        successors = problem.getSuccessors(state)
-        for succ in successors:
-            nextState, action, cost = succ
-            if nextState not in expanded:
-                frontier.push((nextState, actions + [action]))
-
-    print('Goal State not found. Returning empty list....')
-    return []
+    util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    # create new Queue
-    frontier = util.Queue()
-
-    # push the start state and list of actions to get from start state to
-    # pushed state; this is initially empty
-    frontier.push((problem.getStartState(), []))
-    expanded = []
-    while not frontier.isEmpty():
-        state, actions = frontier.pop()
-        if problem.isGoalState(state):
-            return actions
-
-        # otherwise we expand node
-        expanded.append(state)
-        # print('expanding...' + str(state))
-        # print('expanded: ' + str(expanded))
-        # input('Enter to continue')
-        successors = problem.getSuccessors(state)
-        for succ in successors:
-            nextState, action, cost = succ
-            if nextState not in expanded:
-                frontier.push((nextState, actions + [action]))
-
-    print('Goal State not found. Returning empty list....')
-    return []
+    util.raiseNotDefined()
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
-    # create new PriorityQueue
-    frontier = util.PriorityQueue()
-
-    # push the start state and list of actions to get from start state to
-    # pushed state (initally empty)
-    # the second argument is the cumulative cost (initially 0) as the priority
-    frontier.push((problem.getStartState(), []), 0)
-    expanded = []
-    while not frontier.isEmpty():
-        item, priority = frontier.pop()
-        state, actions = item
-        if problem.isGoalState(state):
-            return actions
-
-        # otherwise we expand node
-        expanded.append(state)
-        successors = problem.getSuccessors(state)
-        for succ in successors:
-            nextState, action, cost = succ
-            if nextState not in expanded:
-                frontier.push((nextState, actions + [action]), priority + cost)
-
-    print('Goal State not found. Returning empty list....')
-    return []
+    util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):
     """
@@ -177,35 +109,7 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-    # create new PriorityQueue
-    frontier = util.PriorityQueue()
-
-    # push the start state, list of actions to get from start state to
-    # pushed state (initally empty), and cumulative cost (g which initally is 0)
-    # the second argument is the total cost f as the priority
-    # f = g + h (cumulative cost + heuristic)
-    startState = problem.getStartState()
-    frontier.push((startState, [], 0), heuristic(startState, problem))
-    expanded = []
-    while not frontier.isEmpty():
-        item, f = frontier.pop()
-        state, actions, g = item
-        if problem.isGoalState(state):
-            return actions
-
-        # otherwise we expand node
-        expanded.append(state)
-        successors = problem.getSuccessors(state)
-        for succ in successors:
-            nextState, action, cost = succ
-            next_g = g + cost
-            next_h = heuristic(nextState, problem)
-            next_f = next_g + next_h
-            if nextState not in expanded:
-                frontier.push((nextState, actions + [action], next_g), next_f)
-
-    print('Goal State not found. Returning empty list....')
-    return []
+    util.raiseNotDefined()
 
 
 # Abbreviations

@@ -52,7 +52,7 @@ class Grades:
   def addPrereq(self, question, prereq):
     self.prereqs[question].add(prereq)
 
-  def grade(self, gradingModule, exceptionMap = {}, bonusPic = False):
+  def grade(self, gradingModule, exceptionMap = {}, bonusPic = False, forSubmission = False):
     """
     Grades each question
       gradingModule: the module with all the grading functions (pass in with sys.modules[__name__])
@@ -99,7 +99,7 @@ class Grades:
       print('Question %s: %d/%d' % (q, self.points[q], self.maxes[q]))
     print('------------------')
     print('Total: %d/%d' % (self.points.totalCount(), sum(self.maxes.values())))
-    if bonusPic and self.points.totalCount() == 25:
+    if bonusPic and self.points.totalCount() == 18:
       print("""
 
                      ALL HAIL GRANDPAC.
@@ -132,10 +132,10 @@ class Grades:
                     @@@@@@@@@@@@@@@@@@
 
 """)
-    print("""
-Your grades are NOT yet registered.  To register your grades, make sure
-to follow your instructor's guidelines to receive credit on your project.
-""")
+    if forSubmission:
+        print('\nToken for submission has been created! Submit submit.token, search.py, and searchAgent.py to Blackboard.')
+    else:
+        print("\nHow did you do? If you're ready to submit, run python submit.py")
 
     if self.edxOutput:
         self.produceOutput()
